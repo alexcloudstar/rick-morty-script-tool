@@ -27,7 +27,13 @@ const Location = () => {
   if (loading) return <p>Loading...</p>;
   const locations: Location[] = data?.locations?.results;
 
-  return <Dropdown data={locations} onChange={onChange} />;
+  return (
+    <Dropdown
+      data={locations}
+      onChange={onChange}
+      placeholder='Please select location'
+    />
+  );
 };
 
 export default Location;
