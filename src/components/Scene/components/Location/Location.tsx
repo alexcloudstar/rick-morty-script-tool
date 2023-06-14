@@ -2,6 +2,7 @@ import { useQuery } from '@apollo/client/react';
 import { GET_LOCATIONS } from '../../../../graphql/location';
 import { useSceneStore } from '../../../../store';
 import { Location } from '../../../../types';
+import { Dropdown } from '../../../Dropdown';
 
 const Location = () => {
   const editedScene = useSceneStore(state => state.editedId);
@@ -26,17 +27,7 @@ const Location = () => {
   if (loading) return <p>Loading...</p>;
   const locations: Location[] = data?.locations?.results;
 
-  return (
-    <div>
-      <select className='border border-[#97ce4c] w-1/2' onChange={onChange}>
-        {locations?.map((location: Location) => (
-          <option key={location.id} value={location.name}>
-            {location.name}
-          </option>
-        ))}
-      </select>
-    </div>
-  );
+  return <Dropdown data={locations} onChange={onChange} />;
 };
 
 export default Location;
