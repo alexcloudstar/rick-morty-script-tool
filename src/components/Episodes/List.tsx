@@ -8,7 +8,7 @@ const List = () => {
 
   return (
     <div>
-      <div className='flex flex-row items-center gap-24 flex-wrap'>
+      <div className='flex flex-row items-start gap-24 flex-wrap'>
         {episodesStore?.map((episode: Episode) => (
           <div key={episode.id} className='relative'>
             <img src='https://placehold.co/600x400' alt='' />
