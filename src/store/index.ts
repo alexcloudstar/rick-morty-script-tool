@@ -2,11 +2,14 @@ import { create } from 'zustand';
 import { Episode } from '../types';
 
 interface EpisodeStore {
-  episode: Episode | null;
+  episodes: Episode[] | null;
   setEpisode: (episode: Episode) => void;
 }
 
-const useEpisodeStore = create<EpisodeStore>(set => ({
-  episode: null,
-  setEpisode: (episode: Episode) => set({ episode }),
+export const useEpisodeStore = create<EpisodeStore>(set => ({
+  episodes: null,
+  setEpisode: (episode: Episode) =>
+    set(state => ({
+      episodes: state.episodes ? [...state.episodes, episode] : [episode],
+    })),
 }));

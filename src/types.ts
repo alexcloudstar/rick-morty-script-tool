@@ -38,5 +38,6 @@ export type Scene = {
 
 export type Episode = {
   id: string;
+  title: string;
   scenes: Scene[];
 };
