@@ -1,15 +1,12 @@
 import { useSceneStore } from '../../store';
-import { Episode, Scene } from '../../types';
+import { Episode } from '../../types';
 import { Button } from '../Button';
 
 const SceneList = ({ episodeId }: { episodeId: Episode['id'] }) => {
   const scenes = useSceneStore(state => state.scenes);
   const onSetEditedScene = useSceneStore(state => state.setEditedScene);
+  const onRemoveScene = useSceneStore(state => state.removeScene);
   const editedScene = useSceneStore(state => state.editedId);
-
-  const onEditScene = (sceneId: Scene['id']) => onSetEditedScene(sceneId);
-
-  console.log(scenes);
 
   return scenes
     ?.filter(scene => scene.episodeId === episodeId)
@@ -22,12 +19,17 @@ const SceneList = ({ episodeId }: { episodeId: Episode['id'] }) => {
           <h5>Scene {index + 1}</h5>
           <Button
             text='Edit scene'
-            onClick={() => onEditScene(scene.id)}
+            onClick={() => onSetEditedScene(scene.id)}
+            scheme='secondary'
+          />
+          <Button
+            text='Remove scene'
+            onClick={() => onRemoveScene(scene.id)}
             scheme='secondary'
           />
         </div>
-        <span>{scene.location}</span>
-        <span>{scene.description}</span>
+        {scene.location && <p>Location:{scene.location}</p>}
+        {scene.description && <p>Description: {scene.description}</p>}
       </div>
     ));
 };
