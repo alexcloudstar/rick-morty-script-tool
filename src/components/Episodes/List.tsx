@@ -7,17 +7,16 @@ const List = () => {
   const episodes = useEpisodeStore(state => state.episodes);
 
   return (
-    <div>
-      <div className='flex flex-row items-start gap-24 flex-wrap'>
+    <>
+      <div className='flex flex-row items-start gap-24 flex-wrap mx-5'>
         {episodes?.map((episode: Episode) => (
           <div key={episode.id} className='relative'>
-            <img src='https://placehold.co/600x400' alt='' />
             <Header id={episode.id} title={episode.title} />
             <SceneList episodeId={episode.id} />
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

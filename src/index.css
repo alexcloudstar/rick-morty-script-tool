@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'RAM';
+  src: url('./assets/get_schwifty.ttf');
+}
+
 html,
 body,
 #root {

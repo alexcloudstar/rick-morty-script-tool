@@ -29,9 +29,9 @@ const EpisodeSetup = () => {
   };
 
   return (
-    <>
+    <div className='my-5'>
       <Button text='Add Episode' onClick={onClick} />
-    </>
+    </div>
   );
 };
 
