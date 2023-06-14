@@ -2,7 +2,6 @@ import React from 'react';
 
 type DropdownProps<T> = {
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  placeholder: string;
   data: T[];
   value: string;
 };
@@ -10,7 +9,6 @@ type DropdownProps<T> = {
 const Dropdown = <T extends unknown>({
   data,
   onChange,
-  placeholder,
   value,
 }: DropdownProps<T>) => (
   <select

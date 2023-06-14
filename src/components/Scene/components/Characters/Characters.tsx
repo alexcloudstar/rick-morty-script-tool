@@ -38,16 +38,7 @@ const Characters = () => {
   if (loading) return <p>Loading...</p>;
   const characters: Character[] = data?.characters?.results;
 
-  return (
-    <>
-      <Dropdown
-        data={characters}
-        onChange={onChange}
-        placeholder='Please select characters'
-        value={value}
-      />
-    </>
-  );
+  return <Dropdown data={characters} onChange={onChange} value={value} />;
 };
 
 export default Characters;
