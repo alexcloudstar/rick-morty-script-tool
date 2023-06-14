@@ -7,7 +7,7 @@ const EpisodeSetup = () => {
 
   const onClick = () => {
     setEpisode({
-      id: '1',
+      id: Math.random().toLocaleString(),
       title: 'Episode 1',
       scenes: [],
     });
