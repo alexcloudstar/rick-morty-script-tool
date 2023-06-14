@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client/react';
-import { GET_LOCATIONS } from '../../../../graphql/location';
+import { GET_LOCATIONS } from '../../../../graphql';
 import { useSceneStore } from '../../../../store';
 import { Location } from '../../../../types';
 import { Dropdown } from '../../../Dropdown';

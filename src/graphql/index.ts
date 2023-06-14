@@ -6,8 +6,17 @@ export const GET_LOCATIONS = gql`
       results {
         id
         name
-        type
-        dimension
+      }
+    }
+  }
+`;
+
+export const GET_CHARACTERS = gql`
+  query GetCharacters {
+    characters {
+      results {
+        id
+        name
       }
     }
   }

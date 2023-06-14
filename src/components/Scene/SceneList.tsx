@@ -6,6 +6,7 @@ const SceneList = ({ episodeId }: { episodeId: Episode['id'] }) => {
   const scenes = useSceneStore(state => state.scenes);
   const onSetEditedScene = useSceneStore(state => state.setEditedScene);
   const onRemoveScene = useSceneStore(state => state.removeScene);
+  const onRemoveCharacter = useSceneStore(state => state.removeCharacter);
   const editedScene = useSceneStore(state => state.editedId);
 
   return scenes
@@ -28,7 +29,23 @@ const SceneList = ({ episodeId }: { episodeId: Episode['id'] }) => {
             scheme='secondary'
           />
         </div>
-        {scene.location && <p>Location:{scene.location}</p>}
+        {scene.location && <p>Location: {scene.location}</p>}
+        {scene.characters?.length ? (
+          <p>
+            Characters:{' '}
+            {scene.characters.map(char => (
+              <>
+                {char.name}
+                <button
+                  className='text-red-500 font-bold text-2xl mx-2'
+                  onClick={() => onRemoveCharacter(char.id)}
+                >
+                  x
+                </button>
+              </>
+            ))}
+          </p>
+        ) : null}
         {scene.description && <p>Description: {scene.description}</p>}
       </div>
     ));
