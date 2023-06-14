@@ -5,7 +5,7 @@ export type Location = {
   dimension: string;
   residents: unknown[];
   url: string;
-  created: string;
+  // created: string;
 };
 
 export type Character = {
@@ -31,9 +31,11 @@ export type Character = {
 
 export type Scene = {
   id: string;
-  characters: Character;
-  location: Location;
+  characters?: Character;
+  location: string;
+  test?: string;
   description: string;
+  episodeId: string;
 };
 
 export type Episode = {

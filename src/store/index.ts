@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { Episode } from '../types';
+import { Episode, Scene } from '../types';
 
 interface EpisodeStore {
   episodes: Episode[] | null;
@@ -7,6 +7,15 @@ interface EpisodeStore {
   setEpisode: (episode: Episode) => void;
   setEditedEpisode: (id: Episode['id'] | null) => void;
   removeEpisode: (id: Episode['id']) => void;
+}
+
+interface SceneStore {
+  scenes: Scene[] | null;
+  editedId: Scene['id'] | null;
+  addScene: (scene: Scene) => void;
+  editScene: (scene: Scene) => void;
+  setEditedScene: (id: Scene['id'] | null) => void;
+  removeScene: (id: Scene['id']) => void;
 }
 
 export const useEpisodeStore = create<EpisodeStore>(set => ({
@@ -23,4 +32,29 @@ export const useEpisodeStore = create<EpisodeStore>(set => ({
         ? state.episodes.filter(episode => episode.id !== id)
         : null,
     })),
+}));
+
+export const useSceneStore = create<SceneStore>(set => ({
+  scenes: null,
+  editedId: null,
+  addScene: (scene: Scene) => {
+    set(state => ({
+      scenes: state.scenes ? [...state.scenes, scene] : [scene],
+    }));
+  },
+  editScene: (scene: Scene) => {
+    set(state => ({
+      scenes: state.scenes
+        ? state.scenes.map(s => (s.id === scene.id ? scene : s))
+        : null,
+    }));
+  },
+  setEditedScene: (id: Scene['id'] | null) => set({ editedId: id }),
+  removeScene: (id: Scene['id']) => {
+    set(state => ({
+      scenes: state.scenes
+        ? state.scenes.filter(scene => scene.id !== id)
+        : null,
+    }));
+  },
 }));
