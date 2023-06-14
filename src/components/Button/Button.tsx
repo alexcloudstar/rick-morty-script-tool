@@ -1,12 +1,10 @@
-import { FC } from 'react';
-
 type ButtonProps = {
   text: string;
   onClick: () => void;
   scheme?: 'primary' | 'secondary';
 };
 
-const Button: FC<ButtonProps> = ({ text, scheme = 'primary', onClick }) => {
+const Button = ({ text, scheme = 'primary', onClick }: ButtonProps) => {
   const schemeClass = scheme === 'primary' ? 'bg-[#e4a788]' : 'bg-[#e89ac7]';
   return (
     <button

@@ -1,13 +1,13 @@
 import { useQuery } from '@apollo/client/react';
 import { v4 as uuidv4 } from 'uuid';
 import { GET_CHARACTERS } from '../../../../graphql';
-import { useSceneStore } from '../../../../store';
+
 import { Character } from '../../../../types';
 import { Dropdown } from '../../../Dropdown';
+import { useSceneStore } from '../../../../store';
 
 const Characters = () => {
   const editedScene = useSceneStore(state => state.editedId);
-  const onRemoveCharacter = useSceneStore(state => state.removeCharacter);
   const editScene = useSceneStore(state => state.editScene);
   const scenes = useSceneStore(state => state.scenes);
   const { loading, data } = useQuery(GET_CHARACTERS);
@@ -27,8 +27,6 @@ const Characters = () => {
       description: scene?.description || '',
     });
   };
-
-  const onRemove = (id: string) => onRemoveCharacter(id);
 
   if (loading) return <p>Loading...</p>;
   const characters: Character[] = data?.characters?.results;

@@ -1,6 +1,5 @@
 import { Textarea } from '..';
-import { Location } from './components';
-import { Characters } from './components/Characters';
+import { Location, Characters } from './components';
 
 const SceneSetup = () => {
   return (

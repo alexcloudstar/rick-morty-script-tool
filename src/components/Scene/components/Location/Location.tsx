@@ -9,7 +9,7 @@ const Location = () => {
 
   const editScene = useSceneStore(state => state.editScene);
   const scenes = useSceneStore(state => state.scenes);
-  const { loading, error, data } = useQuery(GET_LOCATIONS);
+  const { loading, data } = useQuery(GET_LOCATIONS);
 
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (!editedScene) return console.error('No scene selected');
