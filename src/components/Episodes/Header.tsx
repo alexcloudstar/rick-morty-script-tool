@@ -27,6 +27,7 @@ const Header = ({
       description: '',
       episodeId,
       location: '',
+      characters: [],
     });
 
     setEditedScene(id);

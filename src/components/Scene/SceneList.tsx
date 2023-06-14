@@ -1,6 +1,7 @@
 import { useSceneStore } from '../../store';
 import { Episode } from '../../types';
 import { Button } from '../Button';
+import { v4 as uuidv4 } from 'uuid';
 
 const SceneList = ({ episodeId }: { episodeId: Episode['id'] }) => {
   const scenes = useSceneStore(state => state.scenes);
@@ -12,7 +13,7 @@ const SceneList = ({ episodeId }: { episodeId: Episode['id'] }) => {
   return scenes
     ?.filter(scene => scene.episodeId === episodeId)
     .map((scene, index) => (
-      <div key={scene.id}>
+      <div key={uuidv4()}>
         <div className='flex items-center'>
           {scene.id === editedScene && (
             <div className='mr-2 bg-green-500 w-4 h-4 rounded-full' />

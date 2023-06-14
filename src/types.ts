@@ -10,7 +10,7 @@ export type Character = {
 
 export type Scene = {
   id: string;
-  characters?: Character[];
+  characters: Character[];
   location: Location['name'];
   description: string;
   episodeId: string;

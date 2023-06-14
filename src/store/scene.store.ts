@@ -34,21 +34,16 @@ export const useSceneStore = create<SceneStore>(set => ({
         : null,
     }));
   },
-  removeCharacter: (id: Character['id']) => {
-    set(state => {
-      if (!state.scenes || !state.editedId) return;
-      const scenes = state.scenes.map(scene => {
-        if (scene.id === state.editedId) {
-          return {
+  removeCharacter(id) {
+    set(state => ({
+      scenes: state.scenes
+        ? state.scenes.map(scene => ({
             ...scene,
-            characters: scene.characters
-              ? scene.characters.filter(character => character.id !== id)
-              : null,
-          };
-        }
-        return scene;
-      });
-      return { scenes };
-    });
+            characters: scene.characters.filter(
+              character => character.id !== id
+            ),
+          }))
+        : null,
+    }));
   },
 }));
