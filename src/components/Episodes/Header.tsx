@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { useEpisodeStore, useSceneStore } from '../../store';
+import { useEpisodeStore, useInputStore, useSceneStore } from '../../store';
 import { Episode } from '../../types';
 import { Button } from '../Button';
 
@@ -10,9 +10,12 @@ const Header = ({
   id: Episode['id'];
   title: Episode['title'];
 }) => {
+  const setInputValueStore = useInputStore(state => state.setValue);
+
   const editedEpisode = useEpisodeStore(state => state.editedId);
   const setEditedEpisode = useEpisodeStore(state => state.setEditedEpisode);
   const removeEpisode = useEpisodeStore(state => state.removeEpisode);
+
   const addScene = useSceneStore(state => state.addScene);
   const setEditedScene = useSceneStore(state => state.setEditedScene);
 
@@ -26,6 +29,7 @@ const Header = ({
     });
 
     setEditedScene(id);
+    setInputValueStore('');
   };
 
   return (

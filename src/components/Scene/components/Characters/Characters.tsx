@@ -16,15 +16,15 @@ const Characters = () => {
     if (!editedScene) return console.error('No scene selected');
 
     const scene = scenes?.find(scene => scene.id === editedScene);
+
+    if (!scene) return console.error('No scene found');
+
     editScene({
       ...scene,
       id: editedScene,
-      episodeId: scene?.episodeId || '',
-      location: scene?.location || '',
       characters: scene?.characters
         ? [...scene.characters, { id: uuidv4(), name: e.target.value }]
         : [{ id: uuidv4(), name: e.target.value }],
-      description: scene?.description || '',
     });
   };
 
