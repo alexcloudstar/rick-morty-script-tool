@@ -1,14 +1,15 @@
-import React from 'react';
-import { Button } from '../Button';
+import { v4 as uuidv4 } from 'uuid';
 import { useEpisodeStore } from '../../store';
+import { Button } from '../Button';
 
 const EpisodeSetup = () => {
+  const episodesStore = useEpisodeStore(state => state.episodes);
   const setEpisode = useEpisodeStore(state => state.setEpisode);
 
   const onClick = () => {
     setEpisode({
-      id: Math.random().toLocaleString(),
-      title: 'Episode 1',
+      id: uuidv4(),
+      title: `Episode ${episodesStore?.length ? episodesStore?.length + 1 : 1}`,
       scenes: [],
     });
   };

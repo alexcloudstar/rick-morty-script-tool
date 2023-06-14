@@ -8,8 +8,6 @@ const List = () => {
 
   const onSetEdit = (episodeId: Episode['id']) => setEditedEpisode(episodeId);
 
-  console.log(editedEpisode);
-
   return (
     <div>
       <h5>Episodes</h5>
