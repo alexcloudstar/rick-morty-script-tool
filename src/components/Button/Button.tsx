@@ -6,6 +6,7 @@ type ButtonProps = {
 
 const Button = ({ text, scheme = 'primary', onClick }: ButtonProps) => {
   const schemeClass = scheme === 'primary' ? 'bg-[#e4a788]' : 'bg-[#e89ac7]';
+
   return (
     <button
       onClick={onClick}

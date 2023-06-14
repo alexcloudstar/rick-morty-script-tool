@@ -12,9 +12,12 @@ const Characters = () => {
     state.setValue,
   ]);
 
-  const editedScene = useSceneStore(state => state.editedId);
-  const editScene = useSceneStore(state => state.editScene);
-  const scenes = useSceneStore(state => state.scenes);
+  const [scenes, editScene, editedScene] = useSceneStore(state => [
+    state.scenes,
+    state.editScene,
+    state.editedId,
+  ]);
+
   const { loading, data } = useQuery(GET_CHARACTERS);
 
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {

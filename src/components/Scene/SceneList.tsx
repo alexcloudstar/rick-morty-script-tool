@@ -4,11 +4,14 @@ import { Button } from '../Button';
 import { v4 as uuidv4 } from 'uuid';
 
 const SceneList = ({ episodeId }: { episodeId: Episode['id'] }) => {
-  const scenes = useSceneStore(state => state.scenes);
-  const onSetEditedScene = useSceneStore(state => state.setEditedScene);
-  const onRemoveScene = useSceneStore(state => state.removeScene);
-  const onRemoveCharacter = useSceneStore(state => state.removeCharacter);
-  const editedScene = useSceneStore(state => state.editedId);
+  const [scenes, setEditedScene, removeScene, removeCharacter, editedScene] =
+    useSceneStore(state => [
+      state.scenes,
+      state.setEditedScene,
+      state.removeScene,
+      state.removeCharacter,
+      state.editedId,
+    ]);
 
   return scenes
     ?.filter(scene => scene.episodeId === episodeId)
@@ -21,12 +24,12 @@ const SceneList = ({ episodeId }: { episodeId: Episode['id'] }) => {
           <h5>Scene {index + 1}</h5>
           <Button
             text='Edit scene'
-            onClick={() => onSetEditedScene(scene.id)}
+            onClick={() => setEditedScene(scene.id)}
             scheme='secondary'
           />
           <Button
             text='Remove scene'
-            onClick={() => onRemoveScene(scene.id)}
+            onClick={() => removeScene(scene.id)}
             scheme='secondary'
           />
         </div>
@@ -39,7 +42,7 @@ const SceneList = ({ episodeId }: { episodeId: Episode['id'] }) => {
                 {char.name}
                 <button
                   className='text-red-500 font-bold text-2xl mx-2'
-                  onClick={() => onRemoveCharacter(char.id)}
+                  onClick={() => removeCharacter(char.id)}
                 >
                   x
                 </button>

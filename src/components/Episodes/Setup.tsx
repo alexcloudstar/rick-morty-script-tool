@@ -4,10 +4,14 @@ import { Button } from '../Button';
 import { useResetValues } from '../../hooks/useResetValues';
 
 const EpisodeSetup = () => {
-  const episodesStore = useEpisodeStore(state => state.episodes);
-  const setEpisode = useEpisodeStore(state => state.setEpisode);
-  const setEditedEpisode = useEpisodeStore(state => state.setEditedEpisode);
+  const [episodes, setEpisode, setEditedEpisode] = useEpisodeStore(state => [
+    state.episodes,
+    state.setEpisode,
+    state.setEditedEpisode,
+  ]);
+
   const setEditedScene = useSceneStore(state => state.setEditedScene);
+
   const { resetValues } = useResetValues();
 
   const onClick = () => {
@@ -15,7 +19,7 @@ const EpisodeSetup = () => {
 
     setEpisode({
       id,
-      title: `Episode ${episodesStore?.length ? episodesStore?.length + 1 : 1}`,
+      title: `Episode ${episodes?.length ? episodes?.length + 1 : 1}`,
       scenes: [],
     });
 

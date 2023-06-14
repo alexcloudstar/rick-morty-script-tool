@@ -13,12 +13,14 @@ const Header = ({
 }) => {
   const { resetValues } = useResetValues();
 
-  const editedEpisode = useEpisodeStore(state => state.editedId);
-  const setEditedEpisode = useEpisodeStore(state => state.setEditedEpisode);
-  const removeEpisode = useEpisodeStore(state => state.removeEpisode);
+  const [editedEpisode, setEditedEpisode, removeEpisode] = useEpisodeStore(
+    state => [state.editedId, state.setEditedEpisode, state.removeEpisode]
+  );
 
-  const addScene = useSceneStore(state => state.addScene);
-  const setEditedScene = useSceneStore(state => state.setEditedScene);
+  const [addScene, setEditedScene] = useSceneStore(state => [
+    state.addScene,
+    state.setEditedScene,
+  ]);
 
   const onAddScene = (episodeId: Episode['id']) => {
     const id = uuidv4();
