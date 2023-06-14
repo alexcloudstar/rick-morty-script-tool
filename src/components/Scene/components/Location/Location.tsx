@@ -1,10 +1,14 @@
 import { useQuery } from '@apollo/client/react';
 import { GET_LOCATIONS } from '../../../../graphql';
-import { useSceneStore } from '../../../../store';
+import { useSceneStore, useSelectLocation } from '../../../../store';
 import { Location } from '../../../../types';
 import { Dropdown } from '../../../Dropdown';
 
 const Location = () => {
+  const [value, setValue] = useSelectLocation(state => [
+    state.value,
+    state.setValue,
+  ]);
   const editedScene = useSceneStore(state => state.editedId);
 
   const editScene = useSceneStore(state => state.editScene);
@@ -23,6 +27,8 @@ const Location = () => {
       id: editedScene,
       location: e.target.value,
     });
+
+    setValue(e.target.value);
   };
 
   if (loading) return <p>Loading...</p>;
@@ -33,6 +39,7 @@ const Location = () => {
       data={locations}
       onChange={onChange}
       placeholder='Please select location'
+      value={value}
     />
   );
 };

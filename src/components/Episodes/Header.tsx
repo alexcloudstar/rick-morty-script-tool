@@ -1,7 +1,8 @@
 import { v4 as uuidv4 } from 'uuid';
-import { useEpisodeStore, useInputStore, useSceneStore } from '../../store';
+import { useEpisodeStore, useSceneStore } from '../../store';
 import { Episode } from '../../types';
 import { Button } from '../Button';
+import { useResetValues } from '../../hooks/useResetValues';
 
 const Header = ({
   id,
@@ -10,7 +11,7 @@ const Header = ({
   id: Episode['id'];
   title: Episode['title'];
 }) => {
-  const setInputValueStore = useInputStore(state => state.setValue);
+  const { resetValues } = useResetValues();
 
   const editedEpisode = useEpisodeStore(state => state.editedId);
   const setEditedEpisode = useEpisodeStore(state => state.setEditedEpisode);
@@ -29,7 +30,7 @@ const Header = ({
     });
 
     setEditedScene(id);
-    setInputValueStore('');
+    resetValues();
   };
 
   return (
