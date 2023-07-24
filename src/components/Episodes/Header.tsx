@@ -13,9 +13,11 @@ const Header = ({
 }) => {
   const { resetValues } = useResetValues();
 
-  const [editedEpisode, setEditedEpisode, removeEpisode] = useEpisodeStore(
-    state => [state.editedId, state.setEditedEpisode, state.removeEpisode]
-  );
+  const [editedEpisode, removeEpisode] = useEpisodeStore(state => [
+    state.editedId,
+    state.setEditedEpisode,
+    state.removeEpisode,
+  ]);
 
   const [addScene, setEditedScene] = useSceneStore(state => [
     state.addScene,
@@ -42,7 +44,6 @@ const Header = ({
         <div className='mr-2 bg-green-500 w-4 h-4 rounded-full' />
       )}
       {title} <Button text='Add scene' onClick={() => onAddScene(id)} />
-      <Button text='Edit' onClick={() => setEditedEpisode(id)} />
       <Button text='Remove' onClick={() => removeEpisode(id)} />
     </div>
   );

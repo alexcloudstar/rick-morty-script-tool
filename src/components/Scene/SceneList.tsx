@@ -1,9 +1,18 @@
-import { useSceneStore } from '../../store';
+import {
+  useEpisodeStore,
+  useInputStore,
+  useSceneStore,
+  useSelectLocation,
+} from '../../store';
 import { Episode } from '../../types';
 import { Button } from '../Button';
 import { v4 as uuidv4 } from 'uuid';
 
 const SceneList = ({ episodeId }: { episodeId: Episode['id'] }) => {
+  const [setValue] = useInputStore(state => [state.setValue]);
+  const [setEditedEpisode] = useEpisodeStore(state => [state.setEditedEpisode]);
+  const [setLocationValue] = useSelectLocation(state => [state.setValue]);
+
   const [scenes, setEditedScene, removeScene, removeCharacter, editedScene] =
     useSceneStore(state => [
       state.scenes,
@@ -12,6 +21,15 @@ const SceneList = ({ episodeId }: { episodeId: Episode['id'] }) => {
       state.removeCharacter,
       state.editedId,
     ]);
+
+  const onSetEditedScene = (sceneId: string) => {
+    const findedScene = scenes?.find(scene => scene.id === sceneId);
+
+    setEditedScene(sceneId);
+    setEditedEpisode(episodeId);
+    setValue(findedScene?.description || '');
+    setLocationValue(findedScene?.location || '');
+  };
 
   return scenes
     ?.filter(scene => scene.episodeId === episodeId)
@@ -24,7 +42,7 @@ const SceneList = ({ episodeId }: { episodeId: Episode['id'] }) => {
           <h5>Scene {index + 1}</h5>
           <Button
             text='Edit scene'
-            onClick={() => setEditedScene(scene.id)}
+            onClick={() => onSetEditedScene(scene.id)}
             scheme='secondary'
           />
           <Button
